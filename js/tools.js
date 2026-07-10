@@ -8,6 +8,24 @@ $(document).ready(function() {
         });
     });
 
+    $('.content-table').each(function() {
+        const curTable = $(this);
+        if (curTable.find('thead').length == 1) {
+            curTable.find('tbody tr').each(function() {
+                const curTR = $(this);
+                curTR.find('td').each(function() {
+                    const curTD = $(this);
+                    const curIndex = curTR.find('td').index(curTD);
+                    curTD.prepend('<div class="content-table-mobile-header">' + curTable.find('thead th').eq(curIndex).html() + '</div>');
+                });
+            });
+        }
+    });
+
+    $('.content-table tr td:first-child').click(function() {
+        $(this).parent().toggleClass('open');
+    });
+
     $('body').on('click', '.window-link', function(e) {
         const curLink = $(this);
         windowOpen(curLink.attr('href'));
@@ -262,6 +280,48 @@ $(document).ready(function() {
                 el: curSlider.find('.swiper-scrollbar')[0],
             },
         });
+    });
+
+    $('.health-risks-list').each(function() {
+        const curSlider = $(this);
+        new Swiper(curSlider.find('.swiper')[0], {
+            slidesPerView: 'auto',
+            freeMode: true,
+            scrollbar: {
+                el: curSlider.find('.swiper-scrollbar')[0],
+            },
+        });
+    });
+
+    $('.health-recommendations-list').each(function() {
+        const curSlider = $(this);
+        new Swiper(curSlider.find('.swiper')[0], {
+            slidesPerView: 'auto',
+            freeMode: true,
+            scrollbar: {
+                el: curSlider.find('.swiper-scrollbar')[0],
+            },
+        });
+    });
+
+    $('.spec').each(function() {
+        $('.spec-tab').each(function() {
+            $('.spec-menu').append('<a href="#">' + $(this).attr('data-title') + '</a>');
+        });
+        $('.spec-menu a').eq(0).addClass('active');
+        $('.spec-tab').eq(0).addClass('active');
+    });
+
+    $('.spec-menu a').click(function(e) {
+        const curLink = $(this);
+        if (!curLink.hasClass('active')) {
+            $('.spec-menu a.active').removeClass('active');
+            curLink.addClass('active');
+            const curIndex = $('.spec-menu a').index(curLink);
+            $('.spec-tab.active').removeClass('active');
+            $('.spec-tab').eq(curIndex).addClass('active');
+        }
+        e.preventDefault();
     });
 
 });
