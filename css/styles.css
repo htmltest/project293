@@ -781,7 +781,7 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
 
 .health-recommendations-list {margin:40px -10px 0 -10px}
 .health-recommendations-list-inner {display:flex; gap:20px; flex-wrap:wrap}
-.health-recommendations-item {min-width:calc(33.33 - 20px); max-width:calc(33.33% - 20px); padding:20px; background:#FFFFFF; display:flex; flex-direction:column; gap:10px 0}
+.health-recommendations-item {min-width:calc(33.33% - 20px); max-width:calc(33.33% - 20px); padding:20px; background:#FFFFFF; display:flex; flex-direction:column; gap:10px 0}
 .health-recommendations-item-phlebodia {background:#866857; color:rgba(255, 255, 255, 0.9)}
 .health-recommendations-item-title {font-weight:normal; font-size:14px; line-height:1.5em; min-height:4.5em; letter-spacing:0; text-transform:uppercase; color:#866857}
 .health-recommendations-item-phlebodia .health-recommendations-item-title {color:#FFFFFF}

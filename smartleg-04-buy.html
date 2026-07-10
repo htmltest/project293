@@ -66,7 +66,7 @@
                                         <li><a href="#">Специалистам</a></li>
                                     </ul>
                                     <ul>
-                                        <li><a href="#">Акции</a></li>
+                                        <li><a href="#">Вопросы и ответы</a></li>
                                         <li><a href="#" class="header-burder-menu-shop">Интернет-магазин<svg><use xlink:href="images/sprite.svg#icon-ext-link"></use></svg></a></li>
                                         <li><a href="#">Где купить?</a></li>
                                     </ul>
@@ -137,7 +137,7 @@
                             async function initMap() {
                                 await ymaps3.ready;
 
-                                const {YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker} = ymaps3;
+                                const {YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker, YMapControls} = ymaps3;
 
                                 const map = new YMap(
                                     document.getElementById('map'),
@@ -145,7 +145,8 @@
                                         location: {
                                             center: coords,
                                             zoom: 3
-                                        }
+                                        },
+                                        behaviors: ['drag', 'pinchZoom', 'dblClick']
                                     }
                                 );
 
@@ -154,6 +155,49 @@
                                 map.addChild(new YMapDefaultFeaturesLayer())
 
                                 ymaps3.import.registerCdn('https://cdn.jsdelivr.net/npm/{package}', ['@yandex/ymaps3-default-ui-theme@latest']);
+                                
+                                const {YMapZoomControl, YMapSearchControl} = await ymaps3.import('@yandex/ymaps3-default-ui-theme');
+                                const {YMapGeolocationControl} = await ymaps3.import('@yandex/ymaps3-default-ui-theme');
+
+                                function updateMapLocation(searchResult) {
+                                    if (searchResult.length !== 0) {
+                                        let center;
+                                        let zoom;
+                                        let bounds;
+
+                                        if (searchResult.length === 1) {
+                                            center = searchResult[0].geometry?.coordinates;
+                                            zoom = 12;
+                                        } else {
+                                            bounds = findSearchResultBoundsRange(searchResult);
+                                        }
+
+                                        map.update({
+                                            location: {
+                                                center,
+                                                zoom,
+                                                bounds,
+                                                duration: 400
+                                            }
+                                        });
+                                    }
+                                };
+
+                                function searchResultHandler(searchResult) {
+                                    updateMapLocation(searchResult);
+                                };
+
+                                map.addChild(
+                                    new YMapControls({position: 'top left'})
+                                        .addChild(new YMapGeolocationControl({easing: 'ease-in-out', duration: 2000, zoom: 15}))
+                                        .addChild(new YMapSearchControl({
+                                            searchResult: searchResultHandler
+                                        }))
+                                );
+                                map.addChild(
+                                    new YMapControls({position: 'left'})
+                                        .addChild(new YMapZoomControl())
+                                );
 
                                 points.forEach(async function(point) {
                                     const search = await ymaps3.search({text: point.address});
@@ -272,7 +316,7 @@
                                     <li><a href="#">Специалистам</a></li>
                                 </ul>
                                 <ul>
-                                    <li><a href="#">Акции</a></li>
+                                    <li><a href="#">Вопросы и ответы</a></li>
                                     <li><a href="#" class="footer-menu-shop">Интернет-магазин<svg><use xlink:href="images/sprite.svg#icon-ext-link"></use></svg></a></li>
                                     <li><a href="#">Где купить?</a></li>
                                 </ul>
