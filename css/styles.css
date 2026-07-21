@@ -336,7 +336,7 @@ li > ol > li {margin:5px 0}
     .wrapper-inner {padding:60px 0 0 0}
 }
 
-header {position:fixed; left:0; top:0; right:0; z-index:99; background:#000000; border-bottom:1px solid rgba(255, 255, 255, 0.2); transition:background 0.2s, border-color 0.2s}
+header {position:fixed; left:0; top:0; right:0; z-index:1001; background:#000000; border-bottom:1px solid rgba(255, 255, 255, 0.2); transition:background 0.2s, border-color 0.2s}
 .page-main header {background-color:transparent; border-bottom-color:transparent}
 .page-main header.fixed {background-color:#000000; border-bottom-color:rgba(255, 255, 255, 0.2)}
 .burger-menu-open .page-main header {background-color:#000000; border-bottom-color:rgba(255, 255, 255, 0.2)}
@@ -512,18 +512,20 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
 
 .main-content {margin:0 0 -120px 0}
 .main-section {padding:100px 0}
-.main-section:nth-child(even) {margin:0 -60px; padding-left:60px; padding-right:60px; background:#FFFFFF}
+.main-section:not(.main-section-white) + .main-section:not(.main-section-white) {padding-top:0}
+.main-section-white {margin:0 -60px; padding-left:60px; padding-right:60px; background:#FFFFFF}
+.main-section-white + .main-section-white {padding-top:0}
 .main-section h2 {margin:0}
 
 @media (min-width:1441px) {
     .main-content {margin:0 0 -140px 0}
-    .main-section:nth-child(even) {margin:0 -160px; padding:100px 160px}
+    .main-section-white {margin:0 -160px; padding:100px 160px}
 }
 
 @media (max-width:1199px) {
     .main-content {margin:0 0 -80px 0}
     .main-section {padding:60px 0}
-    .main-section:nth-child(even) {margin:0 -15px; padding:60px 15px}
+    .main-section-white {margin:0 -15px; padding:60px 15px}
 }
 
 .main-why {margin:40px 0 0 0; position:relative; padding:42.12% 0 0 0; background:url(../images/main-why.jpg) no-repeat center; background-size:cover}
@@ -878,8 +880,8 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
 .about-anonce {margin:0 0 40px 0; font-weight:500; color:#000000}
 .about-list {margin:40px 0 0 0; display:flex; gap:0 20px}
 .about-item {flex:1; padding:20px; display:flex; flex-direction:column; gap:40px 0; background:#FFFFFF}
-.about-item-logo {min-height:116px; max-height:116px; display:flex; align-items:center}
-.about-item-logo img {max-height:116px}
+.about-item-logo {min-height:132px; max-height:132px; display:flex; align-items:center}
+.about-item-logo img {max-height:132px}
 .about-item-text {color:rgba(0, 0, 0, 0.9)}
 .about-item-text *:first-child {margin-top:0}
 .about-item-text *:last-child {margin-bottom:0}
@@ -890,6 +892,8 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
     .about-anonce {margin:0 0 20px 0}
     .about-list {margin:20px 0 0 0; flex-direction:column; gap:10px 0}
     .about-item {gap:10px 0}
+    .about-item-logo {min-height:116px; max-height:116px}
+    .about-item-logo img {max-height:116px}
     .about-item-text ul li {padding:0 0 0 24px}
 }
 
@@ -940,37 +944,34 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
 }
 
 .spec {margin:40px 0 0 0}
-.spec-menu {display:none}
-.spec-tabs {position:relative; display:flex; flex-direction:column; gap:120px 0}
-.spec-tab {width:100%}
+.spec-menu {display:flex}
+.spec-menu a {text-align:center; padding:0 60px 10px 60px; border-bottom:1px solid rgba(0, 0, 0, 0.1); color:rgba(0, 0, 0, 0.5); font-weight:normal; font-size:16px; line-height:19px; letter-spacing:0; text-transform:uppercase; transition:color 0.2s, border-color 0.2s}
+.spec-menu a.active {border-bottom-color:#866857; color:#000000}
+.spec-tabs {display:block; margin:40px 0 0 0; position:relative}
+.spec-tab {position:absolute; left:-9999px; top:-9999px; opacity:0; transition:opacity 0.2s}
+.spec-tab.active {position:relative; left:auto; top:auto; opacity:1}
 .spec-tab > *:first-child {margin-top:0}
 
 @media (max-width:1199px) {
-    .spec-menu {display:flex}
-    .spec-menu a {flex:1; text-align:center; padding:0 0 10px 0; border-bottom:1px solid rgba(0, 0, 0, 0.1); color:rgba(0, 0, 0, 0.5); font-weight:normal; font-size:16px; line-height:19px; letter-spacing:0; text-transform:uppercase; transition:color 0.2s, border-color 0.2s}
-    .spec-menu a.active {border-bottom-color:#866857; color:#000000}
-    .spec-tabs {display:block; margin:40px 0 0 0}
-    .spec-tab {position:absolute; left:-9999px; top:-9999px; opacity:0; transition:opacity 0.2s}
-    .spec-tab.active {position:relative; left:auto; top:auto; opacity:1}
+    .spec-menu a {flex:1; padding:0 0 10px 0}
 }
 
-.spec-articles {margin:40px -10px 0 -10px; display:flex; flex-wrap:wrap; gap:20px 0}
-.spec-articles-item {min-width:calc(33.33% - 20px); max-width:calc(33.33% - 20px); margin:0 10px}
-.spec-articles-item-preview {margin:0 0 20px 0}
-.spec-articles-item-preview img {display:block; width:100%}
+.spec-articles {display:flex; flex-direction:column; gap:40px 0}
+.spec-articles-item {display:flex; align-items:flex-start; gap:0 20px}
+.spec-articles-item-icon {min-width:48px; max-width:48px}
+.spec-articles-item-icon img {display:block; width:100%}
+.spec-articles-item-content {padding:5px 0 0 0}
 .spec-articles-item-title {font-weight:500; margin:0 0 5px 0}
 .spec-articles-item-author {margin:0 0 5px 0}
 .spec-articles-item-ctrl {margin:20px 0 0 0; display:flex; gap:0 10px}
-.spec-articles-item-ctrl .btn {padding:8px 20px; font-weight:300}
 .spec-articles-item-ctrl .btn-border {padding:7px 19px}
-.spec-articles-item-ctrl .btn span {min-width:1px; max-width:1px; height:21px; background:rgba(255, 255, 255, 0.2)}
+.spec-articles-item-ctrl .btn-border span {min-width:1px; max-width:1px; height:21px; background:rgba(0, 0, 0, 0.2)}
 
 @media (max-width:1199px) {
-    .spec-articles {margin:20px 0 0 0; flex-direction:column; gap:20px 0}
-    .spec-articles-item {min-width:0; max-width:none; width:100%; margin:0}
-    .spec-articles-item-preview {max-height:250px; position:relative; overflow:hidden; margin:0 0 10px 0}
-    .spec-articles-item-ctrl {margin:10px 0 0 0}
-    .spec-articles-item-ctrl .btn {flex:1}
+    .spec-articles {gap:24px 0}
+    .spec-articles-item-icon {min-width:32px; max-width:32px}
+    .spec-articles-item-content {padding:0}
+    .spec-articles-item-ctrl {margin:15px 0 0 0}
 }
 
 .faq-list {margin:40px 0 0 0; border-bottom:1px solid rgba(0, 0, 0, 0.1)}
@@ -1059,14 +1060,14 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
     .page-404-btn .btn {display:flex}
 }
 
-.cookies-message {position:fixed; left:50%; bottom:20px; width:1100px; transform:translateX(-50%); padding:20px; border:1px solid rgba(255, 255, 255, 0.2); background:rgba(0, 0, 0, 0.8); z-index:21; display:flex; align-items:center; gap:0 20px}
+.cookies-message {position:fixed; left:50%; bottom:20px; width:1100px; transform:translateX(-50%); padding:20px; border:1px solid rgba(255, 255, 255, 0.2); background:rgba(0, 0, 0, 0.8); z-index:1001; display:flex; align-items:center; gap:0 20px}
 .cookies-message-text {line-height:1.3em; flex-grow:1; color:rgba(255, 255, 255, 0.8)}
 
 @media (max-width:1199px) {
     .cookies-message {width:345px; padding:15px; flex-direction:column; gap:20px 0}
 }
 
-.up-link {position:fixed; z-index:20; right:30px; bottom:30px; width:50px; height:50px; display:none; align-items:center; justify-content:center; border-radius:50%; border:1px solid #FFFFFF; background:rgba(255, 255, 255, 0.5); transition:border-color 0.2s}
+.up-link {position:fixed; z-index:1001; right:30px; bottom:30px; width:50px; height:50px; display:none; align-items:center; justify-content:center; border-radius:50%; border:1px solid #FFFFFF; background:rgba(255, 255, 255, 0.5); transition:border-color 0.2s}
 .up-link.visible {display:flex}
 .page-size-open .up-link.visible {display:none}
 @media (min-width:1200px) {

@@ -119,16 +119,16 @@
                         <script>
                             const coords = [37.617644, 55.605819];
                             const points = [
-                                {'name':'СМ-Клиника','address':'г.Москва, проезд Старопетровский, д.7А, стр.22','email':'apteka-kv@smpost.ru','phone':'+7 495 187 82 69','worktime':''},
-                                {'name':'Аптека &quot;Светлана&quot;','address':'г.Москва, г. Зеленоград, корп. 1130','email':'hilobochenko.l@mail.ru','phone':'+7 916 504 48 59','worktime':'Пн. по суб. с 8.00. до 20.00. , вс. с 9.00. до 18.00.'},
-                                {'name':'Клиника АрхиМед','address':'Москва, Саввинская набережная, 23с1','email':'apteka@arhimedlab.com','phone':'','worktime':''},
-                                {'name':'Медтехника','address':'МО, г. Мытищи, Олимпийский пр-т 15/4','email':'info@medt1.ru','phone':'','worktime':''},
-                                {'name':'Медтехника и ортопедия','address':'г.Оренбург Ул. Степана Разина,115 а','email':'zfagent@mail.ru','phone':'+79228575752','worktime':'Пн. по суб. с 8.00. до 20.00. , вс. с 9.00. до 18.00.'},
-                                {'name':'Проздоровье','address':'г.Омск, ул. Проспект Карла Маркса, 72 помещение 2П','email':'pro_zdorovie@list.ru','phone':'+7 (3812) 699620','worktime':''},
-                                {'name':'Швейцарская Университетская Клиника','address':'г.Москва, ул. Николоямская, дом 7/8','email':'info@swiss-clinic.ru','phone':'+7(495) 641-59-99','worktime':''},
-                                {'name':'МЦ МЕДИКЪ','address':'г. Хабаровск ул. Тихоокеанская 171 В/1','email':'varikozanet73@yandex.ru','phone':'+7(4212) 45-03-03','worktime':'Пн. по суб. с 8.00. до 20.00. , вс. с 9.00. до 18.00.'},
-                                {'name':'ВАРИКОЗА НЕТ','address':'г.Ульяновск, ул. Льва Толстого, д.67А','email':'varikozanet73@yandex.ru','phone':'+78422305500','worktime':''},
-                                {'name':'Ортопедический салон &quot;Ника-мед&quot;','address':'г. Иваново, улица Куконковых, 130, 1 этаж','email':'','phone':'','worktime':''}
+                                {'name':'СМ-Клиника','coords':[55.825699, 37.498105],'address':'г.Москва, проезд Старопетровский, д.7А, стр.22','email':'apteka-kv@smpost.ru','phone':'+7 495 187 82 69','worktime':''},
+                                {'name':'Аптека &quot;Светлана&quot;','coords':[55.996656, 37.180973],'address':'г.Москва, г. Зеленоград, корп. 1130','email':'hilobochenko.l@mail.ru','phone':'+7 916 504 48 59','worktime':'Пн. по суб. с 8.00. до 20.00. , вс. с 9.00. до 18.00.'},
+                                {'name':'Клиника АрхиМед','coords':[55.731642, 37.559604],'address':'Москва, Саввинская набережная, 23с1','email':'apteka@arhimedlab.com','phone':'','worktime':''},
+                                {'name':'Медтехника','coords':[55.921087, 37.759910],'address':'МО, г. Мытищи, Олимпийский пр-т 15/4','email':'info@medt1.ru','phone':'','worktime':''},
+                                {'name':'Медтехника и ортопедия','coords':[51.774681, 55.118057],'address':'г.Оренбург Ул. Степана Разина,115 а','email':'zfagent@mail.ru','phone':'+79228575752','worktime':'Пн. по суб. с 8.00. до 20.00. , вс. с 9.00. до 18.00.'},
+                                {'name':'Проздоровье','coords':[54.943514, 73.383672],'address':'г.Омск, ул. Проспект Карла Маркса, 72 помещение 2П','email':'pro_zdorovie@list.ru','phone':'+7 (3812) 699620','worktime':''},
+                                {'name':'Швейцарская Университетская Клиника','coords':[55.747976, 37.649543],'address':'г.Москва, ул. Николоямская, дом 7/8','email':'info@swiss-clinic.ru','phone':'+7(495) 641-59-99','worktime':''},
+                                {'name':'МЦ МЕДИКЪ','coords':[48.537340, 135.047537],'address':'г. Хабаровск ул. Тихоокеанская 171 В/1','email':'varikozanet73@yandex.ru','phone':'+7(4212) 45-03-03','worktime':'Пн. по суб. с 8.00. до 20.00. , вс. с 9.00. до 18.00.'},
+                                {'name':'ВАРИКОЗА НЕТ','coords':[54.311917, 48.386396],'address':'г.Ульяновск, ул. Льва Толстого, д.67А','email':'varikozanet73@yandex.ru','phone':'+78422305500','worktime':''},
+                                {'name':'Ортопедический салон &quot;Ника-мед&quot;','coords':[56.964186, 41.022583],'address':'г. Иваново, улица Куконковых, 130, 1 этаж','email':'','phone':'','worktime':''}
                             ];
                         </script>
                         <script>
@@ -200,83 +200,80 @@
                                 );
 
                                 points.forEach(async function(point) {
-                                    const search = await ymaps3.search({text: point.address});
-                                    if (search.length) {
-                                        const markerElement = document.createElement('div');
-                                        markerElement.classList.add('buy-map-marker');
+                                    const markerElement = document.createElement('div');
+                                    markerElement.classList.add('buy-map-marker');
 
-                                        const markerIcon = document.createElement('div');
-                                        markerIcon.classList.add('buy-map-marker-icon');
+                                    const markerIcon = document.createElement('div');
+                                    markerIcon.classList.add('buy-map-marker-icon');
 
-                                        markerElement.appendChild(markerIcon);
+                                    markerElement.appendChild(markerIcon);
 
-                                        const popupElement = document.createElement('div');
-                                        popupElement.classList.add('buy-map-popup');
+                                    const popupElement = document.createElement('div');
+                                    popupElement.classList.add('buy-map-popup');
 
-                                        const popupElementTitle = document.createElement('div');
-                                        popupElementTitle.classList.add('buy-map-popup-title');
-                                        popupElementTitle.innerHTML = point.name;
+                                    const popupElementTitle = document.createElement('div');
+                                    popupElementTitle.classList.add('buy-map-popup-title');
+                                    popupElementTitle.innerHTML = point.name;
 
-                                        popupElement.appendChild(popupElementTitle);
+                                    popupElement.appendChild(popupElementTitle);
 
-                                        const popupElementInfo = document.createElement('div');
-                                        popupElementInfo.classList.add('buy-map-popup-info');
+                                    const popupElementInfo = document.createElement('div');
+                                    popupElementInfo.classList.add('buy-map-popup-info');
 
-                                        const popupElementAddress = document.createElement('div');
-                                        popupElementAddress.classList.add('buy-map-popup-info-row');
-                                        popupElementAddress.innerHTML = '<div class="buy-map-popup-info-row-label">Адрес:</div><div class="buy-map-popup-info-row-value">' + point.address + '</div>';
-                                        popupElementInfo.appendChild(popupElementAddress);
+                                    const popupElementAddress = document.createElement('div');
+                                    popupElementAddress.classList.add('buy-map-popup-info-row');
+                                    popupElementAddress.innerHTML = '<div class="buy-map-popup-info-row-label">Адрес:</div><div class="buy-map-popup-info-row-value">' + point.address + '</div>';
+                                    popupElementInfo.appendChild(popupElementAddress);
 
-                                        if (point.phone) {
-                                            const popupElementPhone = document.createElement('div');
-                                            popupElementPhone.classList.add('buy-map-popup-info-row');
-                                            popupElementPhone.innerHTML = '<div class="buy-map-popup-info-row-label">Телефон:</div><div class="buy-map-popup-info-row-value">' + point.phone + '</div>';
-                                            popupElementInfo.appendChild(popupElementPhone);
-                                        }
-
-                                        if (point.email) {
-                                            const popupElementEmail = document.createElement('div');
-                                            popupElementEmail.classList.add('buy-map-popup-info-row');
-                                            popupElementEmail.innerHTML = '<div class="buy-map-popup-info-row-label">E-mail:</div><div class="buy-map-popup-info-row-value">' + point.email + '</div>';
-                                            popupElementInfo.appendChild(popupElementEmail);
-                                        }
-
-                                        if (point.worktime) {
-                                            const popupElementWorktime = document.createElement('div');
-                                            popupElementWorktime.classList.add('buy-map-popup-info-row');
-                                            popupElementWorktime.innerHTML = '<div class="buy-map-popup-info-row-label">Режим работы:</div><div class="buy-map-popup-info-row-value">' + point.worktime + '</div>';
-                                            popupElementInfo.appendChild(popupElementWorktime);
-                                        }
-
-                                        popupElement.appendChild(popupElementInfo);
-
-                                        const closeIconElement = document.createElement('div');
-                                        closeIconElement.classList.add('buy-map-popup-close');
-                                        closeIconElement.innerHTML = '<svg viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.59766 15.8375L5.16016 15.4L10.0602 10.5L5.16016 5.59998L5.59766 5.16248L10.4977 10.0625L15.3977 5.16248L15.8352 5.59998L10.9352 10.5L15.8352 15.4L15.3977 15.8375L10.4977 10.9375L5.59766 15.8375Z" /></svg>';
-                                        closeIconElement.onclick = () => {
-                                            document.querySelectorAll('.buy-map-marker.active').forEach(function(markerActive) {
-                                                markerActive.classList.remove('active');
-                                            });
-                                        };
-
-                                        popupElement.appendChild(closeIconElement);
-
-                                        markerElement.appendChild(popupElement);
-
-                                        const marker = new YMapMarker(
-                                            {
-                                                coordinates: search[0].geometry.coordinates,
-                                                onClick(event) {
-                                                    document.querySelectorAll('.buy-map-marker.active').forEach(function(markerActive) {
-                                                        markerActive.classList.remove('active');
-                                                    });
-                                                    markerElement.classList.add('active');
-                                                },
-                                            },
-                                            markerElement
-                                        );
-                                        map.addChild(marker);
+                                    if (point.phone) {
+                                        const popupElementPhone = document.createElement('div');
+                                        popupElementPhone.classList.add('buy-map-popup-info-row');
+                                        popupElementPhone.innerHTML = '<div class="buy-map-popup-info-row-label">Телефон:</div><div class="buy-map-popup-info-row-value">' + point.phone + '</div>';
+                                        popupElementInfo.appendChild(popupElementPhone);
                                     }
+
+                                    if (point.email) {
+                                        const popupElementEmail = document.createElement('div');
+                                        popupElementEmail.classList.add('buy-map-popup-info-row');
+                                        popupElementEmail.innerHTML = '<div class="buy-map-popup-info-row-label">E-mail:</div><div class="buy-map-popup-info-row-value">' + point.email + '</div>';
+                                        popupElementInfo.appendChild(popupElementEmail);
+                                    }
+
+                                    if (point.worktime) {
+                                        const popupElementWorktime = document.createElement('div');
+                                        popupElementWorktime.classList.add('buy-map-popup-info-row');
+                                        popupElementWorktime.innerHTML = '<div class="buy-map-popup-info-row-label">Режим работы:</div><div class="buy-map-popup-info-row-value">' + point.worktime + '</div>';
+                                        popupElementInfo.appendChild(popupElementWorktime);
+                                    }
+
+                                    popupElement.appendChild(popupElementInfo);
+
+                                    const closeIconElement = document.createElement('div');
+                                    closeIconElement.classList.add('buy-map-popup-close');
+                                    closeIconElement.innerHTML = '<svg viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.59766 15.8375L5.16016 15.4L10.0602 10.5L5.16016 5.59998L5.59766 5.16248L10.4977 10.0625L15.3977 5.16248L15.8352 5.59998L10.9352 10.5L15.8352 15.4L15.3977 15.8375L10.4977 10.9375L5.59766 15.8375Z" /></svg>';
+                                    closeIconElement.onclick = () => {
+                                        document.querySelectorAll('.buy-map-marker.active').forEach(function(markerActive) {
+                                            markerActive.classList.remove('active');
+                                        });
+                                    };
+
+                                    popupElement.appendChild(closeIconElement);
+
+                                    markerElement.appendChild(popupElement);
+
+                                    const marker = new YMapMarker(
+                                        {
+                                            coordinates: [point.coords[1], point.coords[0]],
+                                            onClick(event) {
+                                                document.querySelectorAll('.buy-map-marker.active').forEach(function(markerActive) {
+                                                    markerActive.classList.remove('active');
+                                                });
+                                                markerElement.classList.add('active');
+                                            },
+                                        },
+                                        markerElement
+                                    );
+                                    map.addChild(marker);
                                 });
                             }
                         </script>
