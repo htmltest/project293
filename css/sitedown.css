@@ -21,13 +21,21 @@ a {outline:none; color:#866857; text-decoration:none; transition:color 0.2s}
 
 img {border:none; max-width:100%; height:auto}
 
-.container {max-width:1180px; width:100%; margin:0 auto}
+.container {width:100%; padding:0 60px}
+
+@media (min-width:1441px) {
+    .container {padding:0 160px}
+}
 
 @media (max-width:1199px) {
     .container {padding:0 15px}
 }
 
 .sitedown {padding:40px 0 140px 0}
+
+@media (min-width:1441px) {
+    .sitedown {padding:120px 0}
+}
 
 @media (max-width:1199px) {
     .sitedown {padding:40px 0}
@@ -36,23 +44,22 @@ img {border:none; max-width:100%; height:auto}
 .sitedown-logo {display:flex}
 .sitedown-logo img {width:183px}
 
-.sitedown-content {margin:40px 0 0 0; display:flex; align-items:center; justify-content:space-between}
+.sitedown-content {margin:40px 0 0 0; display:flex; align-items:center; justify-content:space-between; gap:0 100px}
 
 @media (max-width:1199px) {
     .sitedown-content {margin:20px 0 0 0; flex-direction:column; gap:20px 0}
 }
 
-.sitedown-text {min-width:540px; max-width:540px}
+.sitedown-text {flex:1}
 .sitedown-title {font-weight:normal; font-size:36px; line-height:44px; letter-spacing:0; color:#000000}
 .sitedown-descr {margin:21px 0 0 0}
 
 @media (max-width:1199px) {
-    .sitedown-text {min-width:0; max-width:none}
     .sitedown-title {font-weight:500; font-size:24px; line-height:1.5em}
     .sitedown-descr {margin:20px 0 0 0}
 }
 
-.sitedown-contacts {min-width:540px; max-width:540px; display:flex; flex-direction:column; gap:20px 0}
+.sitedown-contacts {flex:1; display:flex; flex-direction:column; gap:20px 0}
 .sitedown-contacts-block {display:flex; flex-direction:column; justify-content:space-between; gap:10px 0; padding:20px; background:#FFFFFF; min-height:185px}
 .sitedown-contacts-block-title {font-weight:normal; font-size:14px; line-height:1.5em; letter-spacing:0; color:#866857; text-transform:uppercase}
 .sitedown-contacts-block-text {margin:30px 0 0 0}
@@ -60,7 +67,7 @@ img {border:none; max-width:100%; height:auto}
 .sitedown-contacts-block-value a {color:#000000}
 
 @media (max-width:1199px) {
-    .sitedown-contacts {min-width:0; max-width:none; gap:10px 0}
+    .sitedown-contacts {gap:10px 0}
     .sitedown-contacts-block {padding:15px; gap:20px 0; min-height:0; background:#F7F7F4}
     .sitedown-contacts-block-title {font-size:12px; line-height:1.5em}
     .sitedown-contacts-block-value {font-size:20px; line-height:24px}

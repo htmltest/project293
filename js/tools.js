@@ -265,6 +265,7 @@ $(document).ready(function() {
         new Swiper(curSlider.find('.swiper')[0], {
             slidesPerView: 'auto',
             freeMode: true,
+            mousewheel: true,
             scrollbar: {
                 el: curSlider.find('.swiper-scrollbar')[0],
             },
