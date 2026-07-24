@@ -947,9 +947,10 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
     .buy-map-popup-info-row {flex-direction:column; gap:5px 0}
     .buy-map-popup-info-row-label {min-width:0; max-width:none; color:rgba(255, 255, 255, 0.6)}
     .buy-map-popup-close {right:10px; top:10px}
+    .ymaps3--search-control {max-width:200px}
 }
 
-.buy-map-cluster {width:60px; height:60px; display:flex; align-items:center; justify-content:center; border:2px solid #866857; background:#FFFFFF; border-radius:50%; font-weight:normal; font-size:24px; line-height:1em; color:#000000; letter-spacing:0}
+.buy-map-cluster {width:60px; height:60px; display:flex; align-items:center; justify-content:center; border:2px solid #866857; background:#FFFFFF; border-radius:50%; font-weight:normal; font-size:24px; line-height:1em; color:#000000; letter-spacing:0; cursor:pointer}
 
 .spec {margin:40px 0 0 0}
 .spec-menu {display:flex}
@@ -1070,6 +1071,25 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
     .page-404-text br {display:none}
     .page-404-img {display:block; max-width:345px; margin:0 auto 20px auto}
     .page-404-btn .btn {display:flex}
+}
+
+.sitemap {display:flex; gap:0 120px; margin:40px 0 0 0}
+.sitemap ul {margin:0; padding:0; display:flex; flex-direction:column; gap:20px 0}
+.sitemap ul li {margin:0; padding:0}
+.sitemap ul li::before {display:none}
+.sitemap ul li a {color:#000000}
+@media (min-width:1200px) {
+    .sitemap ul li a:hover {color:#866857}
+}
+.sitemap ul li a.sitemap-shop {display:flex; align-items:center; gap:0 5px}
+.sitemap ul li a.sitemap-shop svg {min-width:16px; max-width:16px; height:16px; fill:#000000; transition:fill 0.2s}
+@media (min-width:1200px) {
+    .sitemap ul li a.sitemap-shop:hover svg {fill:#866857}
+}
+
+@media (max-width:1199px) {
+    .sitemap {margin:20px 0 0 0; flex-direction:column; gap:15px 0}
+    .sitemap ul {font-size:16px; line-height:1.5em; gap:15px 0}
 }
 
 .cookies-message {position:fixed; left:50%; bottom:20px; width:1100px; transform:translateX(-50%); padding:20px; border:1px solid rgba(255, 255, 255, 0.2); background:rgba(0, 0, 0, 0.8); z-index:1001; display:flex; align-items:center; gap:0 20px}

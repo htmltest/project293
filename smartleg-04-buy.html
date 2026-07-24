@@ -154,10 +154,11 @@
                                 map.addChild(layer);
                                 map.addChild(new YMapDefaultFeaturesLayer())
 
-                                ymaps3.import.registerCdn('https://cdn.jsdelivr.net/npm/{package}', ['@yandex/ymaps3-default-ui-theme@latest']);
-                                
+                                ymaps3.import.registerCdn('https://cdn.jsdelivr.net/npm/{package}', ['@yandex/ymaps3-default-ui-theme@latest', '@yandex/ymaps3-clusterer@latest']);
+
                                 const {YMapZoomControl, YMapSearchControl} = await ymaps3.import('@yandex/ymaps3-default-ui-theme');
                                 const {YMapGeolocationControl} = await ymaps3.import('@yandex/ymaps3-default-ui-theme');
+                                const {YMapClusterer, clusterByGrid} = await ymaps3.import('@yandex/ymaps3-clusterer');
 
                                 function updateMapLocation(searchResult) {
                                     if (searchResult.length !== 0) {
@@ -199,9 +200,82 @@
                                         .addChild(new YMapZoomControl())
                                 );
 
-                                points.forEach(async function(point) {
+                                const mapPoints = [];
+                                points.forEach(async function(point, i) {
+                                    mapPoints.push({
+                                        type: 'Feature',
+                                        id: i,
+                                        geometry: {coordinates: [point.coords[1], point.coords[0]]},
+                                        properties: {
+                                            id: i,
+                                            name: point.name,
+                                            address: point.address,
+                                            email: point.email,
+                                            phone: point.phone,
+                                            worktime: point.worktime
+                                        }
+                                    });
+                                });
+
+                                const cluster = (coordinates, features) =>
+                                    new ymaps3.YMapMarker(
+                                        {
+                                            coordinates,
+                                            onClick() {
+                                                let minLat = Infinity;
+                                                let minLng = Infinity;
+                                                let maxLat = -Infinity;
+                                                let maxLng = -Infinity;
+
+                                                features.forEach(function(feature) {
+                                                    const lat = feature.geometry.coordinates[1];
+                                                    const lng = feature.geometry.coordinates[0];
+
+                                                    if (lat < minLat) minLat = lat;
+                                                    if (lat > maxLat) maxLat = lat;
+                                                    if (lng < minLng) minLng = lng;
+                                                    if (lng > maxLng) maxLng = lng;
+                                                });
+                                                const bounds = [
+                                                    [minLng, minLat],
+                                                    [maxLng, maxLat]
+                                                ];
+                                                map.update({
+                                                    location: {
+                                                        bounds,
+                                                        duration: 400
+                                                    }
+                                                });
+                                            }
+                                        },
+                                        circle(features.length).cloneNode(true)
+                                    );
+
+                                function circle(count) {
+                                    const circle = document.createElement('div');
+                                    circle.classList.add('circle');
+                                    circle.innerHTML = '<div class="buy-map-cluster">' + count + '</div>';
+                                    return circle;
+                                }
+
+                                const marker = (feature) =>
+                                    new ymaps3.YMapMarker(
+                                        {
+                                            coordinates: feature.geometry.coordinates,
+                                            onClick(event) {
+                                                document.querySelectorAll('.buy-map-marker.active').forEach(function(markerActive) {
+                                                    markerActive.classList.remove('active');
+                                                });
+                                                document.querySelector('[data-id="' + feature.id + '"]').classList.add('active');
+                                            },
+                                        },
+                                    mapMarker(feature.properties).cloneNode(true)
+                                );
+
+                                function mapMarker(point) {
                                     const markerElement = document.createElement('div');
                                     markerElement.classList.add('buy-map-marker');
+                                    markerElement.setAttribute('data-id', point.id);
 
                                     const markerIcon = document.createElement('div');
                                     markerIcon.classList.add('buy-map-marker-icon');
@@ -251,30 +325,21 @@
                                     const closeIconElement = document.createElement('div');
                                     closeIconElement.classList.add('buy-map-popup-close');
                                     closeIconElement.innerHTML = '<svg viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.59766 15.8375L5.16016 15.4L10.0602 10.5L5.16016 5.59998L5.59766 5.16248L10.4977 10.0625L15.3977 5.16248L15.8352 5.59998L10.9352 10.5L15.8352 15.4L15.3977 15.8375L10.4977 10.9375L5.59766 15.8375Z" /></svg>';
-                                    closeIconElement.onclick = () => {
-                                        document.querySelectorAll('.buy-map-marker.active').forEach(function(markerActive) {
-                                            markerActive.classList.remove('active');
-                                        });
-                                    };
 
                                     popupElement.appendChild(closeIconElement);
 
                                     markerElement.appendChild(popupElement);
 
-                                    const marker = new YMapMarker(
-                                        {
-                                            coordinates: [point.coords[1], point.coords[0]],
-                                            onClick(event) {
-                                                document.querySelectorAll('.buy-map-marker.active').forEach(function(markerActive) {
-                                                    markerActive.classList.remove('active');
-                                                });
-                                                markerElement.classList.add('active');
-                                            },
-                                        },
-                                        markerElement
-                                    );
-                                    map.addChild(marker);
+                                    return markerElement;
+                                }
+
+                                const clusterer = new YMapClusterer({
+                                    method: clusterByGrid({gridSize: 64}),
+                                    features: mapPoints,
+                                    marker,
+                                    cluster
                                 });
+                                map.addChild(clusterer);
                             }
                         </script>
                     </div>

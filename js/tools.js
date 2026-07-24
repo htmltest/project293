@@ -541,3 +541,11 @@ $(window).on('load resize scroll', function() {
         }
     }
 });
+
+$(document).ready(function() {
+
+    $('body').on('click', '.buy-map-popup-close, .buy-map-cluster', function() {
+        $('.buy-map-marker.active').removeClass('active');
+    });
+
+});
