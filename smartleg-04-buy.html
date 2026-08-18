@@ -189,14 +189,14 @@
                                 };
 
                                 map.addChild(
-                                    new YMapControls({position: 'top left'})
+                                    new YMapControls({position: 'top right'})
                                         .addChild(new YMapGeolocationControl({easing: 'ease-in-out', duration: 2000, zoom: 15}))
                                         .addChild(new YMapSearchControl({
                                             searchResult: searchResultHandler
                                         }))
                                 );
                                 map.addChild(
-                                    new YMapControls({position: 'left'})
+                                    new YMapControls({position: 'right'})
                                         .addChild(new YMapZoomControl())
                                 );
 

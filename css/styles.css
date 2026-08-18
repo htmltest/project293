@@ -480,8 +480,8 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
 }
 
 .main-welcome {position:relative; margin:-100px 0 0 0; height:666px}
-.main-welcome-bg {position:absolute; left:0; top:0; right:0; bottom:0; overflow:hidden}
-.main-welcome-bg img {position:relative; display:block; width:100%; height:100%; max-width:none; -o-object-fit:cover; object-fit:cover}
+.main-welcome-bg {position:absolute; left:0; top:0; right:0; bottom:0; overflow:hidden; display:flex; justify-content:center; background:#000000}
+.main-welcome-bg img {position:relative; display:block; width:auto; height:100%; max-width:none}
 .main-welcome-bg-mobile {display:none}
 .main-welcome-container {position:absolute; left:0; top:0; right:0; bottom:0; display:flex; align-items:center}
 .main-welcome-content {max-width:500px; display:flex; flex-direction:column; gap:10px 0}
@@ -940,6 +940,7 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
 .buy-map-popup-close svg {display:block; width:21px; height:21px; fill:#FFFFFF}
 .buy-partners-map .ymaps3--marker:hover {z-index:1 !important}
 .buy-partners-map .ymaps3--marker:has(.buy-map-marker.active) {z-index:2 !important}
+.buy-partners-map .ymaps3--geolocation-control {width:32px; height:32px}
 
 @media (max-width:1199px) {
     .buy-partners-map {height:490px}
