@@ -325,6 +325,13 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    $('.notice-link').click(function(e) {
+        $('.notice-content').each(function() {
+            $('html, body').animate({'scrollTop': $('.notice-content').offset().top - $('header').height()});
+        });
+        e.preventDefault();
+    });
+
 });
 
 function initForm(curForm) {

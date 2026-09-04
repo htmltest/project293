@@ -25,7 +25,7 @@ iframe {border:none; max-width:100%}
 .swiper-button-next {-moz-user-select:none; -webkit-user-select:none; -ms-user-select:none; user-select:none}
 
 strong, b {font-weight:500; color:rgba(0, 0, 0, 0.9)}
-sup {vertical-align:top}
+sup {vertical-align:top; font-size:0.6em; line-height:2em}
 
 h1 {margin:60px 0 20px 0; padding:0; font-weight:normal; font-size:36px; line-height:44px; letter-spacing:0; color:#000000}
 h2 {margin:40px 0 20px 0; padding:0; font-weight:normal; font-size:30px; line-height:36px; letter-spacing:0; color:#000000}
@@ -515,7 +515,9 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
 .main-section:not(.main-section-white) + .main-section:not(.main-section-white) {padding-top:0}
 .main-section-white {margin:0 -60px; padding-left:60px; padding-right:60px; background:#FFFFFF}
 .main-section-white + .main-section-white {padding-top:0}
+.main-questionnaire:not(.main-section-white) + .main-section:not(.main-section-white) {padding-top:100px}
 .main-section h2 {margin:0}
+.main-section h3 {margin:60px 0 0 0}
 
 @media (min-width:1441px) {
     .main-content {margin:0 0 -140px 0}
@@ -526,15 +528,20 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
     .main-content {margin:0 0 -80px 0}
     .main-section {padding:60px 0}
     .main-section-white {margin:0 -15px; padding:60px 15px}
+    .main-questionnaire:not(.main-section-white) + .main-section:not(.main-section-white) {padding-top:60px}
+    .main-section h3 {margin:49px 0 0 0}
 }
 
 .main-why {margin:40px 0 0 0; position:relative; padding:42.12% 0 0 0; background:url(../images/main-why.jpg) no-repeat center; background-size:cover}
 .main-why-point {position:absolute; cursor:pointer}
 .main-why-point.open {z-index:2}
-.main-why-point-1 {left:68.56%; top:25.89%}
-.main-why-point-2 {left:47.34%; top:41.36%}
-.main-why-point-3 {left:61.13%; top:48.92%}
-.main-why-point-4 {left:45.68%; top:77.51%}
+@media (min-width:1200px) {
+    .main-why-point:hover {z-index:2}
+}
+.main-why-point-1 {left:62.72%; top:18.25%}
+.main-why-point-2 {left:47.34%; top:35.70%}
+.main-why-point-3 {left:59.88%; top:50.35%}
+.main-why-point-4 {left:47.34%; top:67.08%}
 .main-why-point-icon {position:absolute; left:-30px; top:-30px; width:60px; height:60px; border:1px solid rgba(255, 255, 255, 0.3); border-radius:50%}
 .main-why-point-icon::before {content:""; position:absolute; left:50%; top:50%; width:40px; height:40px; margin:-20px 0 0 -20px; background:rgba(255, 255, 255, 0.2); border-radius:50%; transition:background-color 0.2s}
 @media (min-width:1200px) {
@@ -546,7 +553,10 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
     .main-why-point:hover .main-why-point-icon::after {background:#866857}
 }
 .main-why-point.open .main-why-point-icon::after {background:#866857}
-.main-why-point-content {position:absolute; top:-30px; padding:18px 0 0 0}
+.main-why-point-content {position:absolute; top:-15px; transition:background 0.2s, padding 0.2s, top 0.2s; border-radius:4px}
+@media (min-width:1200px) {
+    .main-why-point:hover .main-why-point-content {background:rgba(0, 0, 0, 0.75); border:1px solid rgba(255, 255, 255, 0.3); padding:15px; top:-30px; width:355px}
+}
 .main-why-point-title {white-space:nowrap; font-weight:500; text-transform:uppercase; color:#FFFFFF}
 .main-why-point-1 .main-why-point-content {left:40px}
 .main-why-point-2 .main-why-point-content {right:40px}
@@ -564,7 +574,7 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
     .main-why-point-2 {left:23.18%; top:33.91%}
     .main-why-point-3 {left:63.18%; top:45%}
     .main-why-point-4 {left:14.49%; top:78.47%}
-    .main-why-point-content {display:none; top:35px; width:315px; background:#000000; padding:20px}
+    .main-why-point-content {display:none; top:35px; width:315px; background:rgba(0, 0, 0, 0.75); border:1px solid rgba(255, 255, 255, 0.3); padding:15px}
     .main-why-point.open .main-why-point-content {display:block}
     .main-why-point-1 .main-why-point-content {left:-253px}
     .main-why-point-2 .main-why-point-content {right:auto; left:-65px}
@@ -695,6 +705,34 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
     .main-articles-list .swiper-scrollbar.swiper-scrollbar-horizontal {margin:20px 15px 0 15px; height:2px}
 }
 
+.main-prefs-maxi {margin:40px 0 0 0; display:flex; gap:0 10px}
+.main-prefs-maxi-item {flex:1; display:flex; flex-direction:column; align-items:center; gap:20px 0; border:1px solid rgba(134, 104, 87, 0.25); padding:12px 20px; text-align:center}
+.main-prefs-maxi-item-icon {min-width:197px; max-width:197px}
+.main-prefs-maxi-item-icon img {display:block; width:100%}
+.main-prefs-maxi-item-text {font-weight:normal; font-size:12px; line-height:1.3em; letter-spacing:0; text-transform:uppercase; color:rgba(0, 0, 0, 0.75)}
+
+@media (max-width:1199px) {
+    .main-prefs-maxi {margin:20px 0 0 0; flex-direction:column; gap:10px 0}
+    .main-prefs-maxi-item {flex:0; gap:10px 0}
+    .main-prefs-maxi-item-icon {min-width:141px; max-width:141px}
+}
+
+.main-asqual {display:flex; gap:0 40px; margin:30px 0 0 0}
+.main-asqual-main {flex:1; display:flex; flex-direction:column; gap:40px 0; justify-content:space-between}
+.main-asqual-main-text {font-weight:500; color:#000000}
+.main-asqual-main-logo {display:flex; gap:0 56px}
+.main-asqual-main-logo img {height:134px}
+.main-asqual-descr {flex:1}
+.main-asqual-notice {margin:40px 0 0 0; padding:20px 0 0 0; border-top:1px solid #EFEFEF; font-size:12px; line-height:1.5em}
+
+@media (max-width:1199px) {
+    .main-asqual {flex-direction:column; gap:20px 0; margin:20px 0 0 0}
+    .main-asqual-main {flex:0; gap:20px 0}
+    .main-asqual-main-logo {gap:0 20px}
+    .main-asqual-descr {flex:0}
+    .main-asqual-notice {margin:20px 0 0 0}
+}
+
 .health {margin:52px 0 0 0; display:flex; flex-direction:column; gap:120px 0}
 
 @media (max-width:1199px) {
@@ -734,9 +772,10 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
 .health-risks-list-inner {display:flex; gap:0 20px}
 .health-risks-item {flex:1; display:flex; flex-direction:column; gap:20px 0; background:#FFFFFF; padding:20px}
 .health-risks-item-title {font-weight:normal; font-size:14px; line-height:1.5em; min-height:4.5em; letter-spacing:0; text-transform:uppercase; color:#866857}
-.health-risks-item-text p {margin:16px 0}
-.health-risks-item-text *:first-child {margin-top:0}
-.health-risks-item-text *:last-child {margin-bottom:0}
+.health-risks-item-text {display:flex; flex-direction:column; gap:16px 0}
+.health-risks-item-text-item {display:flex; align-items:flex-start; gap:0 10px}
+.health-risks-item-text-item-icon {min-width:24px; max-width:24px}
+.health-risks-item-text-item-icon img {display:block; width:100%}
 .health-risks-list .swiper-horizontal>.swiper-scrollbar,
 .health-risks-list .swiper-scrollbar.swiper-scrollbar-horizontal {position:relative; left:auto; top:auto; right:auto; bottom:auto; width:auto; margin:20px 0 0 0; height:5px; border-radius:0; background:#DCDCDE}
 .health-risks-list .swiper-scrollbar-drag {border-radius:0; background:#866857}
@@ -748,6 +787,7 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
     .health-risks-list .swiper-slide {width:auto}
     .health-risks-list-inner {display:inline-flex; gap:0 10px; padding:0 15px}
     .health-risks-item {flex:0; min-width:300px; max-width:300px; padding:15px}
+    .health-risks-item-text-item-icon {min-width:21px; max-width:21px}
     .health-risks-list .swiper-horizontal>.swiper-scrollbar,
     .health-risks-list .swiper-scrollbar.swiper-scrollbar-horizontal {margin:20px 15px 0 15px; height:2px}
 }
@@ -788,6 +828,8 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
 .health-recommendations-list-inner {display:flex; gap:20px; flex-wrap:wrap}
 .health-recommendations-item {min-width:calc(33.33% - 20px); max-width:calc(33.33% - 20px); padding:20px; background:#FFFFFF; display:flex; flex-direction:column; gap:10px 0}
 .health-recommendations-item-phlebodia {background:#866857; color:rgba(255, 255, 255, 0.9)}
+.health-recommendations-item-icon {min-width:34px; max-width:34px}
+.health-recommendations-item-icon img {display:block; width:100%}
 .health-recommendations-item-title {font-weight:normal; font-size:14px; line-height:1.5em; min-height:4.5em; letter-spacing:0; text-transform:uppercase; color:#866857}
 .health-recommendations-item-phlebodia .health-recommendations-item-title {color:#FFFFFF}
 .health-recommendations-item-text p {margin:16px 0}
@@ -1117,6 +1159,11 @@ header.fixed .header-logo {min-width:92px; max-width:92px}
     .up-link svg {width:16px; height:16px}
 }
 
+.phlebodia-link {position:fixed; z-index:99; right:12px; top:50%; padding:12px 20px 17px 20px; background:#DBB467; border-radius:6px 6px 0 0; transform:translate(50%, -50%) rotate(-90deg); transition-origin:center bottom; font-weight:normal; font-size:12px; line-height:12px; text-transform:uppercase; color:#000000; transition:right 0.2s}
+@media (min-width:1200px) {
+    .phlebodia-link:hover {right:17px}
+}
+
 footer {margin:120px 0 0 0; border-top:1px solid rgba(255, 255, 255, 0.25); background:#000000}
 
 @media (min-width:1441px) {
@@ -1235,3 +1282,5 @@ footer {margin:120px 0 0 0; border-top:1px solid rgba(255, 255, 255, 0.25); back
 @media (max-width:1199px) {
     .footer-cookie {padding:15px 0; font-size:14px; line-height:1.5em; letter-spacing:-0.01em; text-transform:none}
 }
+
+.notice-link {cursor:pointer}
